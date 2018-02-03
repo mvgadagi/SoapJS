@@ -23,17 +23,16 @@ function soap() {
                 var responseBody = (xmlhttp.responseText).replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(
                     /&amp;/g,
                     '&');
-                //var jsonText = JSON.stringify(xmlToJson(responseBody));
+       
                 var jsonResponse = x2js.xml_str2json(responseBody).toSource();
                 alert(jsonResponse);
-                // alert('done. use firebug/console to see network response');
+             ;
             }
         }
     }
-    // Send the POST request
+
     xmlhttp.setRequestHeader('Content-Type', 'text/xml');
     xmlhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
     xmlhttp.send(sr);
-    // send request
-    // ...
+
 }
