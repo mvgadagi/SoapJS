@@ -1,9 +1,12 @@
 var x2js = new X2JS();
+var soapMethod = 'POST';
+var soapEndpoint = 'http://www.webservicex.com/globalweather.asmx';
 
 function soap() {
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open('POST', 'http://www.webservicex.com/globalweather.asmx', true);
-    // build SOAP request
+    xmlhttp.open(soapMethod, soapEndpoint, true);
+
+    //CountryName with Value India
     var sr =
         '<?xml version="1.0" encoding="utf-8"?>' +
         '<soapenv:Envelope ' +
@@ -20,13 +23,13 @@ function soap() {
         console.log(xmlhttp.status);
         if (xmlhttp.readyState == 4) {
             if (xmlhttp.status == 200) {
+                //Unscaping the Response before converting to JSON
                 var responseBody = (xmlhttp.responseText).replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(
                     /&amp;/g,
                     '&');
-       
+                //Convert to JSON
                 var jsonResponse = x2js.xml_str2json(responseBody).toSource();
-                alert(jsonResponse);
-             ;
+                alert(jsonResponse);;
             }
         }
     }
